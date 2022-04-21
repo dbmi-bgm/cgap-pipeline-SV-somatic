@@ -26,6 +26,11 @@ RUN conda install -c bioconda -y r-base==4.1.0 ascat==3.0.0 cancerit-allelecount
 ## other R packages
 RUN R -e "install.packages('optparse', repos='http://cran.rstudio.com/')"
 
+COPY run_ascat.sh .
+RUN chmod +x run_ascat.sh
+
+COPY scripts/ascat.R .
+
 ## Supporting UTF-8
 RUN locale-gen "en_US.UTF-8" && update-locale LC_ALL="en_US.UTF-8"
 ENV LC_ALL=en_US.UTF-8
