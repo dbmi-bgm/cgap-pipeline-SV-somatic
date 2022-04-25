@@ -4,9 +4,9 @@ WORKDIR="/usr/local/bin"
 
 while [ "$1" != "" ]; do
     case $1 in
-    --tumour_file)
+    --tumor_file)
         shift
-        tumour_file=$1
+        tumor_file=$1
         ;;
     --normal_file)
         shift
@@ -16,9 +16,13 @@ while [ "$1" != "" ]; do
         shift
         gender=$1
         ;;
-    --tumour_name)
+    --tumor_name)
         shift
-        tumour_name=$1
+        tumor_name=$1
+        ;;
+    --normal_name)
+        shift
+        normal_name=$1
         ;;
     --nthreads)
         shift
@@ -32,7 +36,6 @@ while [ "$1" != "" ]; do
     shift
 done
 
-tar -xvf $reference_data $WORKDIR
+tar -xzvf $reference_data -C $WORKDIR --strip-components=1
 
-Rscript ascat.R --tumour_file $tumour_file --normal_file $normal_file --gender $gender --tumour_name $tumour_name --nthreads $nthreads 
-
+Rscript ascat.R --tumor_file $tumor_file --normal_file $normal_file --gender $gender --tumor_name $tumor_name --normal_name $normal_name --nthreads $nthreads || exit 1
