@@ -9,6 +9,8 @@ tumorBAF_file_name <- "Tumor_BAF.txt"
 normalLogR_file_name <- "Germline_LogR.txt"
 normalBAF_file_name <- "Germline_BAF.txt"
 GcCorrections_file_name <- "GC_G1000_hg38.txt"
+tumor_name <- "tumor"
+normal_name <- "normal"
 
 option_list <- list(
   make_option(
@@ -78,8 +80,8 @@ if (opt$gender != "XX" | opt$gender != "XY") {
 ascat.prepareHTS(
   tumourseqfile = opt$tumor_file,
   normalseqfile = opt$normal_file,
-  tumourname = opt$tumor_name,
-  normalname = opt$normal_name,
+  tumourname = tumor_name,
+  normalname = normal_name,
   allelecounter_exe = "/miniconda3/bin/alleleCounter",
   alleles.prefix = "G1000_alleles_hg38/G1000_alleles_hg38_chr",
   loci.prefix = "G1000_loci_hg38/G1000_loci_hg38_chr",
