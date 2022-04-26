@@ -28,6 +28,6 @@ while [ "$1" != "" ]; do
     shift
 done
 
-tar -xzvf $reference_data -C $WORKDIR --strip-components=1
+tar -xzvf $reference_data -C $WORKDIR
 
 Rscript ascat.R --tumor_file $tumor_file --normal_file $normal_file --gender $gender --nthreads $nthreads || exit 1
