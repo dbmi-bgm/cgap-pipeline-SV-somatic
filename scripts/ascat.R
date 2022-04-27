@@ -35,21 +35,6 @@ option_list <- list(
   ),
   
   make_option(
-    c("--tumor_name"),
-    action = "store",
-    type = "character",
-    help = "tumor sample name"
-  ),
-  
-  make_option(
-    c("--normal_name"),
-    action = "store",
-    type = "character",
-    help = "Normal sample name"
-  ),
-  
-  
-  make_option(
     c("--nthreads"),
     type = "integer",
     help = "Number of threads",

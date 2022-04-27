@@ -18,12 +18,16 @@ inputs:
     type: File
     inputBinding:
       prefix: "--tumor_file"
+    secondaryFiles:
+      - .bai
     doc: tumor sample BAM file
 
   - id: normal_file
     type: File
     inputBinding:
       prefix: "--normal_file"
+    secondaryFiles:
+      - .bai
     doc: normal sample BAM file
 
   - id: gender
