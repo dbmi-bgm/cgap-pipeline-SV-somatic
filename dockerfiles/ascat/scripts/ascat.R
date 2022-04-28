@@ -7,6 +7,11 @@ tumorBAF_file_name <- "Tumor_BAF.txt"
 normalLogR_file_name <- "Germline_LogR.txt"
 normalBAF_file_name <- "Germline_BAF.txt"
 GcCorrections_file_name <- "GC_G1000_hg38.txt"
+tumor_name  <- "tumor"
+normal_name <- "normal"
+
+cnv_filename <- "cnv_ascat.tsv"
+measures_file_name <- "BAF_LogR_tumor_germline"
 
 option_list <- list(
   make_option(
@@ -28,23 +33,7 @@ option_list <- list(
     type = "character",
     action = "store",
     help = "Gender"
-  ),
-  
-  make_option(
-    c("--tumor_name"),
-    action = "store",
-    type = "character",
-    help = "tumor sample name"
-  ),
-  
-  make_option(
-    c("--normal_name"),
-    action = "store",
-    type = "character",
-    help = "Normal sample name"
-  ),
-  
-  
+  ), 
   make_option(
     c("--nthreads"),
     type = "integer",
@@ -58,9 +47,7 @@ option_list <- list(
 REQUIRED_PARAMS <-
   c("tumor_file",
     "normal_file",
-    "gender",
-    "normal_name",
-    "tumor_name")
+    "gender")
 
 opt = parse_args(OptionParser(option_list = option_list))
 
@@ -78,15 +65,17 @@ if (!(opt$gender %in%  c("XX", "XY"))) {
 }
 
 library(ASCAT)
+library(tidyverse)
+library(tibble)
 
 ascat.prepareHTS(
   tumourseqfile = opt$tumor_file,
   normalseqfile = opt$normal_file,
-  tumourname = opt$tumor_name,
-  normalname = opt$normal_name,
+  tumourname = tumor_name,
+  normalname = normal_name,
   allelecounter_exe = "/miniconda3/bin/alleleCounter",
-  alleles.prefix = "G1000_alleles_hg38/G1000_alleles_hg38_chr",
-  loci.prefix = "G1000_loci_hg38/G1000_loci_hg38_chr",
+  alleles.prefix = "G1000_alleles_hg38_chr",
+  loci.prefix = "G1000_loci_hg38_chr",
   gender = opt$gender,
   genomeVersion = GENOME_VERSION,
   nthreads = opt$threads,
@@ -112,3 +101,36 @@ ascat.bc <- ascat.aspcf(ascat.bc)
 ascat.plotSegmentedData(ascat.bc)
 ascat.output <- ascat.runAscat(ascat.bc)
 QC <- ascat.metrics(ascat.bc, ascat.output)
+
+ascat.output$segments$copyNumber <-  ascat.output$segments$nMajor + ascat.output$segments$nMinor
+output_segments <- subset(ascat.output$segments, select = -c(sample))
+
+write.table(output_segments, file=cnv_filename, sep="\t", quote=F, row.names=F, col.names=T)
+
+id <- "chrom_pos"
+ascat.bc$Germline_LogR <- tibble::rownames_to_column(ascat.bc$Germline_LogR , id)
+colnames(ascat.bc$Germline_LogR) <- c(id, "germline_LogR")
+
+ascat.bc$Germline_BAF <- tibble::rownames_to_column( ascat.bc$Germline_BAF , id)
+colnames(ascat.bc$Germline_BAF) <- c(id, "germline_BAF")
+
+ascat.bc$Tumor_LogR <- tibble::rownames_to_column(ascat.bc$Tumor_LogR , id)
+colnames(ascat.bc$Tumor_LogR) <- c(id, "tumor_LogR")
+
+ascat.bc$Tumor_BAF <- tibble::rownames_to_column(ascat.bc$Tumor_BAF , id)
+colnames(ascat.bc$Tumor_BAF) <- c(id, "tumor_BAF")
+
+
+tumor_BAF_segmented <- as.data.frame(ascat.bc$Tumor_BAF_segmented[[1]])
+tumor_BAF_segmented <- tibble::rownames_to_column(tumor_BAF_segmented, id)
+colnames(tumor_BAF_segmented) <- c(id, "tumor_BAF_segmented")
+
+
+tumor_LogR_segmented <- as.data.frame(ascat.bc$Tumor_LogR_segmented[[1]])
+tumor_LogR_segmented <- tibble::rownames_to_column(tumor_LogR_segmented, id)
+colnames(tumor_LogR_segmented) <- c(id, "tumor_LogR_segmented")
+
+df_list <- list(ascat.bc$Germline_LogR, ascat.bc$Germline_BAF , ascat.bc$Tumor_LogR, ascat.bc$Tumor_BAF, tumor_LogR_segmented, tumor_BAF_segmented)
+joined <- df_list %>% reduce(full_join, by=id)
+
+write.table(joined, file=measures_file_name, sep="\t", quote=F, row.names=F, col.names=T)

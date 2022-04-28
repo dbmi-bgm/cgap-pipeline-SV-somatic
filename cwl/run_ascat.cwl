@@ -44,20 +44,48 @@ inputs:
     doc: number of threads used to run parallel
   
   - id: reference_data
-    type: string
+    type: File
     inputBinding:
       prefix: "--reference_data"
     doc: tar file with loci, alleles and GC correction files
 
 outputs:
-  - id: tumor_baf
+  - id: BAF_LogR_tumor_germline
     type: File
     outputBinding:
-      glob: Tumor_BAF.txt
-  - id: tumor_logr
+      glob: BAF_LogR_tumor_germline
+  - id: after_correction_tumor_germline
+    type: File
+    outputBinding:
+      glob: After_correction_tumor.germline.png
+  - id: after_correction_tumor_tumor
+    type: File
+    outputBinding:
+      glob: After_correction_tumor.tumour.png
+  - id: before_correction_tumor_tumour
+    type: File
+    outputBinding:
+      glob: Before_correction_tumor.tumour.png
+  - id: tumor_ASCATprofile
+    type: File
+    outputBinding:
+      glob: tumor.ASCATprofile.png
+  - id: tumor_ASPCF
+    type: File
+    outputBinding:
+      glob: tumor.ASPCF.png
+  - id: tumor_rawprofile
+    type: File
+    outputBinding:
+      glob: tumor.rawprofile.png
+  - id: tumor_sunrise
+    type: File
+    outputBinding: 
+      glob: tumor.sunrise.png
+  - id: cnv_ascat
     type: File 
     outputBinding: 
-      glob: After_correction_tumor.germline.png 
+      glob: cnv_ascat.tsv
 
 doc: |
   run run_ascat.sh
