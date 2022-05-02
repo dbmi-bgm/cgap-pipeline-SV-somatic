@@ -47,7 +47,7 @@ inputs:
     type: File
     inputBinding:
       prefix: "--reference_data"
-    doc: tar file with loci, alleles and GC correction files
+    doc: tar file of loci, alleles and GC correction files
 
 outputs:
   - id: BAF_LogR_tumor_germline
@@ -86,6 +86,10 @@ outputs:
     type: File 
     outputBinding: 
       glob: cnv_ascat.tsv
+  - id: ascat_objects
+    type: File 
+    outputBinding: 
+      glob: ascat_objects.Rdata
 
 doc: |
   run run_ascat.sh

@@ -50,6 +50,8 @@ outputs:
     type: File
   - id: tumor_sunrise
     type: File
+  - id: ascat_objects
+    type: File
 
 steps:
   run_ascat:
@@ -65,6 +67,6 @@ steps:
         source: nthreads
       reference_data:
         source: reference_data
-    out: [BAF_LogR_tumor_germline, tumor_sunrise, tumor_rawprofile, cnv_ascat,tumor_ASPCF, before_correction_tumor_tumour,tumor_ASCATprofile, after_correction_tumor_germline, after_correction_tumor_tumor]
+    out: [BAF_LogR_tumor_germline, tumor_sunrise, tumor_rawprofile, cnv_ascat,tumor_ASPCF, before_correction_tumor_tumour,tumor_ASCATprofile, after_correction_tumor_germline, after_correction_tumor_tumor, ascat_objects]
 
 doc: run run_ascat.sh

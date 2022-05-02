@@ -7,6 +7,7 @@ tumorBAF_file_name <- "Tumor_BAF.txt"
 normalLogR_file_name <- "Germline_LogR.txt"
 normalBAF_file_name <- "Germline_BAF.txt"
 GcCorrections_file_name <- "GC_G1000_hg38.txt"
+ascat_objects_file_name <- "ascat_objects.Rdata"
 tumor_name  <- "tumor"
 normal_name <- "normal"
 
@@ -105,13 +106,15 @@ QC <- ascat.metrics(ascat.bc, ascat.output)
 ascat.output$segments$copyNumber <-  ascat.output$segments$nMajor + ascat.output$segments$nMinor
 output_segments <- subset(ascat.output$segments, select = -c(sample))
 
+save(ascat.output, ascat.bc, file = ascat_objects_file_name)
+
 write.table(output_segments, file=cnv_filename, sep="\t", quote=F, row.names=F, col.names=T)
 
 id <- "chrom_pos"
 ascat.bc$Germline_LogR <- tibble::rownames_to_column(ascat.bc$Germline_LogR , id)
 colnames(ascat.bc$Germline_LogR) <- c(id, "germline_LogR")
 
-ascat.bc$Germline_BAF <- tibble::rownames_to_column( ascat.bc$Germline_BAF , id)
+ascat.bc$Germline_BAF <- tibble::rownames_to_column(ascat.bc$Germline_BAF , id)
 colnames(ascat.bc$Germline_BAF) <- c(id, "germline_BAF")
 
 ascat.bc$Tumor_LogR <- tibble::rownames_to_column(ascat.bc$Tumor_LogR , id)
@@ -125,8 +128,7 @@ tumor_BAF_segmented <- as.data.frame(ascat.bc$Tumor_BAF_segmented[[1]])
 tumor_BAF_segmented <- tibble::rownames_to_column(tumor_BAF_segmented, id)
 colnames(tumor_BAF_segmented) <- c(id, "tumor_BAF_segmented")
 
-
-tumor_LogR_segmented <- as.data.frame(ascat.bc$Tumor_LogR_segmented[[1]])
+tumor_LogR_segmented <- as.data.frame(ascat.bc$Tumor_LogR_segmented)
 tumor_LogR_segmented <- tibble::rownames_to_column(tumor_LogR_segmented, id)
 colnames(tumor_LogR_segmented) <- c(id, "tumor_LogR_segmented")
 
