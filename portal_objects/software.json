@@ -1,0 +1,14 @@
+[
+    {
+    "project": "PROJECT_UUID",
+    "institution": "INSTITUTION_UUID",
+    "name": "ascat",
+    "software_type": [
+        "variant caller"
+    ],
+    "source_url": "https://github.com/VanLoo-lab/ascat",
+    "title": "ascat_3.0.0",
+    "uuid": "c91ebae7-03c3-4d93-8e28-03ce87d63c62",
+    "version": "3.0.0"
+    }
+]

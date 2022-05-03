@@ -1,0 +1,14 @@
+[
+    {
+        "uuid": "7a33ce65-80f4-4c65-8229-8c2bbe0c1445",
+        "institution": "INSTITUTION_UUID",
+        "project": "PROJECT_UUID",
+        "file_format": "tar_gz",
+        "description": "datasource for loci, alleles and GC correction files",
+        "aliases": [
+            "cgap:ascat_reference_loci_alleles_GC_a34f043a34f043"
+        ],  
+        "status": "uploading",
+        "accession": "GAPFI6BNMYRO"
+    }
+]
