@@ -53,7 +53,7 @@ outputs:
   - id: BAF_LogR_tumor_germline
     type: File
     outputBinding:
-      glob: BAF_LogR_tumor_germline
+      glob: BAF_LogR_tumor_germline.tsv.gz
   - id: after_correction_tumor_germline
     type: File
     outputBinding:
@@ -85,7 +85,7 @@ outputs:
   - id: cnv_ascat
     type: File 
     outputBinding: 
-      glob: cnv_ascat.tsv
+      glob: cnv_ascat.tsv.gz
   - id: ascat_objects
     type: File 
     outputBinding: 
