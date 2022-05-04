@@ -12,7 +12,7 @@ tumor_name  <- "tumor"
 normal_name <- "normal"
 
 cnv_filename <- "cnv_ascat.tsv"
-measures_file_name <- "BAF_LogR_tumor_germline"
+measures_file_name <- "BAF_LogR_tumor_germline.tsv"
 
 option_list <- list(
   make_option(
@@ -68,6 +68,7 @@ if (!(opt$gender %in%  c("XX", "XY"))) {
 library(ASCAT)
 library(tidyverse)
 library(tibble)
+library(tidyr)
 
 ascat.prepareHTS(
   tumourseqfile = opt$tumor_file,
@@ -103,11 +104,10 @@ ascat.plotSegmentedData(ascat.bc)
 ascat.output <- ascat.runAscat(ascat.bc)
 QC <- ascat.metrics(ascat.bc, ascat.output)
 
-ascat.output$segments$copyNumber <-  ascat.output$segments$nMajor + ascat.output$segments$nMinor
-output_segments <- subset(ascat.output$segments, select = -c(sample))
-
 save(ascat.output, ascat.bc, file = ascat_objects_file_name)
 
+ascat.output$segments$copyNumber <-  ascat.output$segments$nMajor + ascat.output$segments$nMinor
+output_segments <- subset(ascat.output$segments, select = -c(sample))
 write.table(output_segments, file=cnv_filename, sep="\t", quote=F, row.names=F, col.names=T)
 
 id <- "chrom_pos"
@@ -132,7 +132,6 @@ tumor_LogR_segmented <- as.data.frame(ascat.bc$Tumor_LogR_segmented)
 tumor_LogR_segmented <- tibble::rownames_to_column(tumor_LogR_segmented, id)
 colnames(tumor_LogR_segmented) <- c(id, "tumor_LogR_segmented")
 
-df_list <- list(ascat.bc$Germline_LogR, ascat.bc$Germline_BAF , ascat.bc$Tumor_LogR, ascat.bc$Tumor_BAF, tumor_LogR_segmented, tumor_BAF_segmented)
-joined <- df_list %>% reduce(full_join, by=id)
-
-write.table(joined, file=measures_file_name, sep="\t", quote=F, row.names=F, col.names=T)
+measures_list <- list(ascat.bc$Germline_LogR, ascat.bc$Germline_BAF , ascat.bc$Tumor_LogR, ascat.bc$Tumor_BAF, tumor_LogR_segmented, tumor_BAF_segmented)
+measures_df <- measures_list %>% reduce(full_join, by=id) %>% separate(chrom_pos, c('Chrom', 'Pos'))
+write.table(measures_df, file=measures_file_name, sep="\t", quote=F, row.names=F, col.names=T)

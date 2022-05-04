@@ -30,4 +30,4 @@ done
 
 tar -xzf $reference_data
 
-Rscript $WORKDIR/ascat.R --tumor_file $tumor_file --normal_file $normal_file --gender $gender --nthreads $nthreads || exit 1
+Rscript $WORKDIR/ascat.R --tumor_file $tumor_file --normal_file $normal_file --gender $gender --nthreads $nthreads && gzip cnv_ascat.tsv && gzip BAF_LogR_tumor_germline.tsv || exit 1
