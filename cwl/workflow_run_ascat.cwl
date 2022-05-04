@@ -29,7 +29,7 @@ inputs:
 
   - id: reference_data
     type: File
-    doc: tar file with loci, alleles and GC correction files
+    doc: tar file of loci, alleles and GC correction files
 
 outputs:
   - id: BAF_LogR_tumor_germline

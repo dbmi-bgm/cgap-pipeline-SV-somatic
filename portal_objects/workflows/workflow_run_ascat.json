@@ -27,7 +27,7 @@
         "workflow_argument_name": "nthreads"
     },
     {
-        "argument_format": "tsv",
+        "argument_format": "tsv_gz",
         "argument_type": "Output processed file",
         "workflow_argument_name": "BAF_LogR_tumor_germline"
     },
@@ -67,7 +67,7 @@
         "workflow_argument_name": "tumor_sunrise"
     },
     {
-        "argument_format": "tsv",
+        "argument_format": "tsv_gz",
         "argument_type": "Output processed file",
         "workflow_argument_name": "cnv_ascat"
     },
@@ -84,7 +84,7 @@
   "cwl_directory_url_v1": "s3://CWLBUCKET/PIPELINE/VERSION",
   "cwl_main_filename": "workflow_run_ascat.cwl",
   "cwl_pointer": "",
-  "description": "Filter out common and artefactual SVs through comparison to 20 unrelated files. An integrity check is performed on the output file",
+  "description": "Run Ascat to assemble the allele-specific copy number of solid tumors",
   "institution": "INSTITUTION_UUID",
   "name": "workflow_run_ascat_VERSION",
   "aliases": ["cgap:workflow_run_ascat-check_VERSION"],
@@ -162,13 +162,14 @@
           ],
           "meta": {
               "analysis_step_types": [
-                  "Run 20_unrelated_SV_filter to filter sample VCF"
+                  "Run Ascat to detect the allele-specific copy number"
               ],
               "software_used": [
-                 "/softwares/04e57a90-471b-431d-a5ec-b94b3dacf219"
+                "/softwares/c91ebae7-03c3-4d93-8e28-03ce87d63c62",
+                "/softwares/34914c29-7a44-45ec-a5f9-b8d33d069b87"
               ]
           },
-          "name": "20_unrelated_SV_filter",
+          "name": "run Ascat",
           "outputs": [
               {
                   "meta": {
@@ -260,7 +261,6 @@
           ]
     }
   ],
-  "title": "TODO",
-  "uuid": "6ab682c4-7e40-4cce-9d81-5db3538d89cb",
-  "version_upgrade_log": "docker update"
+  "title": "Run the ascat analysis",
+  "uuid": "6ab682c4-7e40-4cce-9d81-5db3538d89cb"
 }
