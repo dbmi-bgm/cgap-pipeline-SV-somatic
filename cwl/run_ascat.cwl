@@ -9,7 +9,7 @@ requirements:
 
 hints:
   - class: DockerRequirement
-    dockerPull: ascat:1.0.0
+    dockerPull: ACCOUNT/ascat:VERSION
 
 baseCommand: [run_ascat.sh]
 
