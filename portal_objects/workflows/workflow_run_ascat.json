@@ -84,10 +84,10 @@
   "cwl_directory_url_v1": "s3://CWLBUCKET/PIPELINE/VERSION",
   "cwl_main_filename": "workflow_run_ascat.cwl",
   "cwl_pointer": "",
-  "description": "Run Ascat to assemble the allele-specific copy number of solid tumors",
+  "description": "Run Ascat to call the allele-specific copy number variants of tumors",
   "institution": "INSTITUTION_UUID",
   "name": "workflow_run_ascat_VERSION",
-  "aliases": ["cgap:workflow_run_ascat-check_VERSION"],
+  "aliases": ["cgap:workflow_run_ascat_VERSION"],
   "steps": [
     {
           "inputs": [
@@ -122,7 +122,7 @@
               {
                 "meta": {
                     "cardinality": "single",
-                    "file_format": "tar.gz",
+                    "file_format": "tar_gz",
                     "global": true,
                     "type": "data file"
                 },

@@ -4,12 +4,12 @@
         "institution": "INSTITUTION_UUID",
         "project": "PROJECT_UUID",
         "file_format": "tar_gz",
-        "description": "datasource for loci, alleles and GC correction files",
+        "description": "datasource for loci, alleles and GC correction files from G1000/Ascat",
         "aliases": [
-            "cgap:ascat_reference_loci_alleles_GC_a34f043a34f043"
+            "cgap:ascat_reference_loci_alleles_GC_G1000"
         ],  
         "status": "uploading",
         "accession": "GAPFI6BNMYRO",
-        "file_version": "a34f043a34f043_hg38_09202021"
+        "file_version": "hg38"
     }
 ]
