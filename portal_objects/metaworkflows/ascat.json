@@ -1,83 +1,86 @@
 {
-    "name": "WGS_CNV_somatic_ascat",
-    "title": "WGS CNV Somatic Ascat VERSION ",
-    "version": "VERSION",
-    "accession": "GAPMWFOOL21M",
-    "description": "Run Ascat to call CNV on a tumor sample",
-    "uuid": "46b32ec8-ef0e-430e-bc38-ed357656b728",
-    "project": "PROJECT_UUID",
-    "institution": "INSTITUTION_UUID",
-    "input": [
-      {
-        "argument_name": "tumor_file",
-        "argument_type": "file",
-        "dimensionality": 1
+  "name": "WGS_CNV_somatic_ascat",
+  "title": "WGS CNV Somatic Ascat VERSION ",
+  "version": "VERSION",
+  "accession": "GAPMWFOOL21M",
+  "description": "Run Ascat to call CNV on a tumor sample",
+  "uuid": "46b32ec8-ef0e-430e-bc38-ed357656b728",
+  "project": "PROJECT_UUID",
+  "institution": "INSTITUTION_UUID",
+  "input": [
+    {
+      "argument_name": "tumor_file",
+      "argument_type": "file",
+      "dimensionality": 1
+    },
+    {
+      "argument_name": "normal_file",
+      "argument_type": "file",
+      "dimensionality": 1
+    },
+    {
+      "argument_name": "gender",
+      "argument_type": "parameter",
+      "value_type": "string"
+    },
+    {
+      "argument_name": "nthreads",
+      "argument_type": "parameter",
+      "value_type": "integer"
+    },
+    {
+      "argument_name": "reference_data",
+      "argument_type": "file",
+      "files": [
+        {
+          "file": "7a33ce65-80f4-4c65-8229-8c2bbe0c1445"
+        }
+      ]
+    }
+  ],
+  "workflows": [
+    {
+      "name": "workflow_ascat",
+      "workflow": "6ab682c4-7e40-4cce-9d81-5db3538d89cb",
+      "config": {
+        "instance_type": "m5.4xlarge",
+        "ebs_size": "1.5x",
+        "EBS_optimized": true,
+        "spot_instance": false,
+        "run_name": "run_workflow_ascat",
+        "behavior_on_capacity_limit": "wait_and_retry"
       },
-      {
-        "argument_name": "normal_file",
-        "argument_type": "file",
-        "dimensionality": 1
-      },
-      {
-        "argument_name": "gender",
-        "argument_type": "parameter",
-        "value_type": "string"
-      },
-      {
-        "argument_name": "nthreads",
-        "argument_type": "parameter",
-        "value_type": "integer"
-      },
-      {
-        "argument_name": "reference_data",
-        "argument_type": "file",
-        "files": [{"file": "7a33ce65-80f4-4c65-8229-8c2bbe0c1445"}]
-      }
-    ],
-    "workflows": [
-      {
-        "name": "workflow_ascat",
-        "workflow": "6ab682c4-7e40-4cce-9d81-5db3538d89cb",
-        "config": {
-          "instance_type": "m5.4xlarge",
-          "ebs_size": "1.5x",
-          "EBS_optimized": true,
-          "spot_instance": false,
-          "run_name": "run_workflow_ascat",
-          "behavior_on_capacity_limit": "wait_and_retry"
+      "custom_pf_fields": {},
+      "input": [
+        {
+          "argument_name": "tumor_file",
+          "argument_type": "file",
+          "source_argument_name": "tumor_file",
+          "input_dimension": 1
         },
-        "custom_pf_fields": {
+        {
+          "argument_name": "normal_file",
+          "argument_type": "file",
+          "source_argument_name": "normal_file",
+          "input_dimension": 1
         },
-        "input": [
-          {
-            "argument_name": "tumor_file",
-            "argument_type": "file",
-            "source_argument_name": "tumor_file",
-            "input_dimension": 1
-          },
-          {
-            "argument_name": "normal_file",
-            "argument_type": "file",
-            "source_argument_name": "normal_file",
-            "input_dimension": 1
-          },
-          {
-            "argument_name": "gender",
-            "argument_type": "parameter",
-            "source_argument_name": "gender"
-          },
-          {
-            "argument_name": "reference_data",
-            "argument_type": "file",
-            "source_argument_name": "reference_data"
-          },
-          {
-            "argument_name": "nthreads",
-            "argument_type": "parameter",
-            "value": "23",
-            "value_type": "integer"
-          }
-        ]
-      }
-    ]
-  }
+        {
+          "argument_name": "gender",
+          "argument_type": "parameter",
+          "source_argument_name": "gender"
+        },
+        {
+          "argument_name": "reference_data",
+          "argument_type": "file",
+          "source_argument_name": "reference_data"
+        },
+        {
+          "argument_name": "nthreads",
+          "argument_type": "parameter",
+          "value": "23",
+          "value_type": "integer"
+        }
+      ]
+    }
+  ]
+}

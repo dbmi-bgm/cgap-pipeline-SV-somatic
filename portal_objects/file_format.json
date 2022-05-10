@@ -7,7 +7,10 @@
         "project": "PROJECT_UUID",
         "institution": "INSTITUTION_UUID",
         "status": "shared",
-        "valid_item_types": ["FileProcessed", "FileReference"]
+        "valid_item_types": [
+            "FileProcessed",
+            "FileReference"
+        ]
     },
     {
         "file_format": "bam",
@@ -20,7 +23,9 @@
         "project": "PROJECT_UUID",
         "institution": "INSTITUTION_UUID",
         "status": "shared",
-        "valid_item_types": ["FileProcessed"]
+        "valid_item_types": [
+            "FileProcessed"
+        ]
     },
     {
         "file_format": "bai",
@@ -30,7 +35,9 @@
         "project": "PROJECT_UUID",
         "institution": "INSTITUTION_UUID",
         "status": "shared",
-        "valid_item_types": ["FileProcessed"]
+        "valid_item_types": [
+            "FileProcessed"
+        ]
     },
     {
         "file_format": "png",
@@ -40,7 +47,9 @@
         "project": "PROJECT_UUID",
         "institution": "INSTITUTION_UUID",
         "status": "shared",
-        "valid_item_types": ["FileProcessed"]
+        "valid_item_types": [
+            "FileProcessed"
+        ]
     },
     {
         "file_format": "Rdata",
@@ -50,6 +59,8 @@
         "project": "PROJECT_UUID",
         "institution": "INSTITUTION_UUID",
         "status": "shared",
-        "valid_item_types": ["FileProcessed"]
+        "valid_item_types": [
+            "FileProcessed"
+        ]
     }
 ]

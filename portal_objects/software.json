@@ -1,26 +1,26 @@
 [
     {
-    "project": "PROJECT_UUID",
-    "institution": "INSTITUTION_UUID",
-    "name": "ascat",
-    "software_type": [
-        "variant caller"
-    ],
-    "source_url": "https://github.com/VanLoo-lab/ascat",
-    "title": "ascat_3.0.0",
-    "uuid": "c91ebae7-03c3-4d93-8e28-03ce87d63c62",
-    "version": "3.0.0"
+        "project": "PROJECT_UUID",
+        "institution": "INSTITUTION_UUID",
+        "name": "ascat",
+        "software_type": [
+            "variant caller"
+        ],
+        "source_url": "https://github.com/VanLoo-lab/ascat",
+        "title": "ascat_3.0.0",
+        "uuid": "c91ebae7-03c3-4d93-8e28-03ce87d63c62",
+        "version": "3.0.0"
     },
     {
-    "project": "PROJECT_UUID",
-    "institution": "INSTITUTION_UUID",
-    "name": "cancerit-allelecount",
-    "software_type": [
-        "other"
-    ],
-    "source_url": "https://anaconda.org/bioconda/cancerit-allelecount",
-    "title": " cancerit-allelecount_4.3.0",
-    "uuid": "34914c29-7a44-45ec-a5f9-b8d33d069b87",
-    "version": "4.3.0"
+        "project": "PROJECT_UUID",
+        "institution": "INSTITUTION_UUID",
+        "name": "cancerit-allelecount",
+        "software_type": [
+            "other"
+        ],
+        "source_url": "https://anaconda.org/bioconda/cancerit-allelecount",
+        "title": " cancerit-allelecount_4.3.0",
+        "uuid": "34914c29-7a44-45ec-a5f9-b8d33d069b87",
+        "version": "4.3.0"
     }
 ]

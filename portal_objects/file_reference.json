@@ -7,7 +7,7 @@
         "description": "datasource for loci, alleles and GC correction files from G1000/Ascat",
         "aliases": [
             "cgap:ascat_reference_loci_alleles_GC_G1000"
-        ],  
+        ],
         "status": "uploading",
         "accession": "GAPFI6BNMYRO",
         "file_version": "hg38"
