@@ -104,7 +104,7 @@ ascat.plotSegmentedData(ascat.bc)
 ascat.output <- ascat.runAscat(ascat.bc)
 QC <- ascat.metrics(ascat.bc, ascat.output)
 
-save(ascat.output, ascat.bc, file = ascat_objects_file_name)
+save(ascat.output, ascat.bc, QC, file = ascat_objects_file_name)
 
 ascat.output$segments$copyNumber <-  ascat.output$segments$nMajor + ascat.output$segments$nMinor
 output_segments <- subset(ascat.output$segments, select = -c(sample))
