@@ -42,7 +42,6 @@
         "status": "shared",
         "valid_item_types": ["FileProcessed"]
     },
-
     {
         "file_format": "Rdata",
         "standard_file_extension": "Rdata",

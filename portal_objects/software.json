@@ -16,7 +16,7 @@
     "institution": "INSTITUTION_UUID",
     "name": "cancerit-allelecount",
     "software_type": [
-        "allele counter"
+        "other"
     ],
     "source_url": "https://anaconda.org/bioconda/cancerit-allelecount",
     "title": " cancerit-allelecount_4.3.0",

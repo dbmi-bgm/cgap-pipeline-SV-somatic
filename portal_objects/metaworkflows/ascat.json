@@ -10,11 +10,13 @@
     "input": [
       {
         "argument_name": "tumor_file",
-        "argument_type": "file"
+        "argument_type": "file",
+        "dimensionality": 1
       },
       {
         "argument_name": "normal_file",
-        "argument_type": "file"
+        "argument_type": "file",
+        "dimensionality": 1
       },
       {
         "argument_name": "gender",
@@ -34,14 +36,14 @@
     ],
     "workflows": [
       {
-        "name": "workflow_run_ascat",
+        "name": "workflow_ascat",
         "workflow": "6ab682c4-7e40-4cce-9d81-5db3538d89cb",
         "config": {
           "instance_type": "m5.4xlarge",
           "ebs_size": "1.5x",
           "EBS_optimized": true,
           "spot_instance": false,
-          "run_name": "run_workflow_run_ascat",
+          "run_name": "run_workflow_ascat",
           "behavior_on_capacity_limit": "wait_and_retry"
         },
         "custom_pf_fields": {
@@ -50,12 +52,14 @@
           {
             "argument_name": "tumor_file",
             "argument_type": "file",
-            "source_argument_name": "tumor_file"
+            "source_argument_name": "tumor_file",
+            "input_dimension": 1
           },
           {
             "argument_name": "normal_file",
             "argument_type": "file",
-            "source_argument_name": "normal_file"
+            "source_argument_name": "normal_file",
+            "input_dimension": 1
           },
           {
             "argument_name": "gender",
@@ -64,7 +68,7 @@
           },
           {
             "argument_name": "reference_data",
-            "argument_type": "parameter",
+            "argument_type": "file",
             "source_argument_name": "reference_data"
           },
           {

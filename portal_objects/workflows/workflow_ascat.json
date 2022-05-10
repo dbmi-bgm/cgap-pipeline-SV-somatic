@@ -1,6 +1,6 @@
 {
   "accession": "GAPWFJL4GOP",
-  "app_name": "workflow_run_ascat",
+  "app_name": "workflow_ascat",
   "app_version": "VERSION",
   "arguments": [
     {
@@ -80,14 +80,14 @@
   ],
   "project": "PROJECT_UUID",
   "category": ["processing"],
-  "cwl_child_filenames": ["run_ascat.cwl"],
+  "cwl_child_filenames": ["ascat.cwl"],
   "cwl_directory_url_v1": "s3://CWLBUCKET/PIPELINE/VERSION",
-  "cwl_main_filename": "workflow_run_ascat.cwl",
+  "cwl_main_filename": "workflow_ascat.cwl",
   "cwl_pointer": "",
   "description": "Run Ascat to call the allele-specific copy number variants of tumors",
   "institution": "INSTITUTION_UUID",
-  "name": "workflow_run_ascat_VERSION",
-  "aliases": ["cgap:workflow_run_ascat_VERSION"],
+  "name": "workflow_ascat_VERSION",
+  "aliases": ["cgap:workflow_ascat_VERSION"],
   "steps": [
     {
           "inputs": [
@@ -178,7 +178,12 @@
                       "global": true,
                       "type": "data file"
                   },
-                  "name": "after_correction_tumor_germline"
+                  "name": "after_correction_tumor_germline",
+                  "target": [
+                    {
+                        "name": "after_correction_tumor_germline"
+                    }
+                ]
               },
 
               {
@@ -188,7 +193,12 @@
                     "global": true,
                     "type": "data file"
                 },
-                "name": "after_correction_tumor_tumor"
+                "name": "after_correction_tumor_tumor",
+                "target": [
+                {
+                    "name": "after_correction_tumor_tumor"
+                }
+                ]
             },
 
             {
@@ -208,7 +218,12 @@
                     "global": true,
                     "type": "data file"
                 },
-                "name": "tumor_ASCATprofile"
+                "name": "tumor_ASCATprofile",
+                "target": [
+                {
+                    "name": "tumor_ASCATprofile"
+                }
+                ]
             },
 
             {
@@ -218,7 +233,13 @@
                     "global": true,
                     "type": "data file"
                 },
-                "name": "tumor_ASPCF"
+                "name": "tumor_ASPCF",
+                "target": [
+                    {
+                        "name": "tumor_ASPCF"
+                    }
+                    ]
+                
             },
 
             {
@@ -228,7 +249,12 @@
                     "global": true,
                     "type": "data file"
                 },
-                "name": "tumor_rawprofile"
+                "name": "tumor_rawprofile",
+                "target": [
+                    {
+                        "name": "tumor_rawprofile"
+                    }
+                    ]
             },
 
             {
@@ -238,16 +264,26 @@
                     "global": true,
                     "type": "data file"
                 },
-                "name": "tumor_sunrise"
+                "name": "tumor_sunrise",
+                "target": [
+                    {
+                        "name": "tumor_sunrise"
+                    }
+                    ]
             },
             {
                 "meta": {
                     "cardinality": "single",
-                    "file_format": "tsv",
+                    "file_format": "tsv_gz",
                     "global": true,
                     "type": "data file"
                 },
-                "name": "cnv_ascat"
+                "name": "cnv_ascat",
+                "target": [
+                    {
+                        "name": "cnv_ascat"
+                    }
+                ]
             },
             {
                 "meta": {
@@ -256,11 +292,31 @@
                     "global": true,
                     "type": "data file"
                 },
-                "name": "ascat_objects"
+                "name": "ascat_objects",
+                "target": [
+                    {
+                        "name": "ascat_objects"
+                    }
+                ]
+            },
+            {
+                "meta": {
+                    "cardinality": "single",
+                    "file_format": "tsv_gz",
+                    "global": true,
+                    "type": "data file"
+                },
+                "name": "BAF_LogR_tumor_germline"
+                ,
+                "target": [
+                    {
+                        "name": "BAF_LogR_tumor_germline"
+                    }
+                ]
             }
           ]
     }
   ],
-  "title": "Run the ascat analysis",
+  "title": "Run ascat analysis",
   "uuid": "6ab682c4-7e40-4cce-9d81-5db3538d89cb"
 }
