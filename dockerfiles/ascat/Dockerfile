@@ -18,7 +18,9 @@ RUN apt-get update && apt-get install -y \
 #######################################################################
 WORKDIR /usr/local/bin
 
-
+#######################################################################
+#     Software
+#######################################################################
 ## Ascat and R
 RUN conda install -c bioconda -y r-base==4.1.0 ascat==3.0.0 cancerit-allelecount==4.3.0  && \
     conda clean -a -y -f
@@ -28,11 +30,19 @@ RUN R -e "install.packages('optparse', repos='http://cran.rstudio.com/')"
 RUN R -e "install.packages('tidyverse', repos='http://cran.rstudio.com/')"
 RUN R -e "install.packages('tibble', repos='http://cran.rstudio.com/')"
 
+#######################################################################
+#     Scripts
+#######################################################################
+## run_ascat
 COPY run_ascat.sh .
 RUN chmod +x run_ascat.sh
 
+## ascat
 COPY scripts/ascat.R .
 
+#######################################################################
+#     Setting env variables
+#######################################################################
 ## Supporting UTF-8
 RUN locale-gen "en_US.UTF-8" && update-locale LC_ALL="en_US.UTF-8"
 ENV LC_ALL=en_US.UTF-8
