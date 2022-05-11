@@ -41,7 +41,7 @@ inputs:
     default: 23
     inputBinding:
       prefix: "--nthreads"
-    doc: number of threads used to run parallel
+    doc: number of threads used to run ascat
   
   - id: reference_data
     type: File
