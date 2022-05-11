@@ -19,7 +19,7 @@ option_list <- list(
     c("--tumor_file"),
     action = "store",
     type = "character",
-    help = "tumor sample in BAM"
+    help = "Tumor sample in BAM"
   ),
   
   make_option(
