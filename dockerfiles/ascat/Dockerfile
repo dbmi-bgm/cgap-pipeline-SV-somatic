@@ -21,7 +21,7 @@ WORKDIR /usr/local/bin
 #######################################################################
 #     Software
 #######################################################################
-## Ascat and R
+## ascat-allelecount and base R
 RUN conda install -c bioconda -y r-base==4.1.0 ascat==3.0.0 cancerit-allelecount==4.3.0  && \
     conda clean -a -y -f
 
