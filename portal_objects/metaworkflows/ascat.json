@@ -1,9 +1,9 @@
 {
   "name": "WGS_CNV_somatic_ascat",
-  "title": "WGS CNV Somatic Ascat VERSION ",
+  "title": "WGS CNV Somatic ASCAT VERSION ",
   "version": "VERSION",
   "accession": "GAPMWFOOL21M",
-  "description": "Run Ascat to call CNV on a tumor sample",
+  "description": "Call CNV on tumor-normal samples with ASCAT",
   "uuid": "46b32ec8-ef0e-430e-bc38-ed357656b728",
   "project": "PROJECT_UUID",
   "institution": "INSTITUTION_UUID",
