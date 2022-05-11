@@ -20,12 +20,11 @@ inputs:
 
   - id: gender
     type: string
-    doc: lgender
+    doc: gender
 
   - id: nthreads
     type: int
-    default: true
-    doc: number of threads used to run parallel
+    doc: number of threads used to run ascat
 
   - id: reference_data
     type: File
