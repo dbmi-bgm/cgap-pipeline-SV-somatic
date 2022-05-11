@@ -84,7 +84,7 @@
   "cwl_directory_url_v1": "s3://CWLBUCKET/PIPELINE/VERSION",
   "cwl_main_filename": "workflow_ascat.cwl",
   "cwl_pointer": "",
-  "description": "Run ASCAT to call the allele-specific copy number variants in tumor-normal sample",
+  "description": "Run ASCAT to call allele-specific copy number variants in tumor-normal sample",
   "institution": "INSTITUTION_UUID",
   "name": "workflow_ascat_VERSION",
   "aliases": ["cgap:workflow_ascat_VERSION"],
