@@ -30,7 +30,7 @@
     {
         "file_format": "bai",
         "standard_file_extension": "bam.bai",
-        "description": "Bam index format",
+        "description": "bam index format",
         "uuid": "d13d06c1-218e-4f61-aaf0-91f226248b3c",
         "project": "PROJECT_UUID",
         "institution": "INSTITUTION_UUID",
