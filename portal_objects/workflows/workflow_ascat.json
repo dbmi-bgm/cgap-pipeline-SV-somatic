@@ -84,7 +84,7 @@
   "cwl_directory_url_v1": "s3://CWLBUCKET/PIPELINE/VERSION",
   "cwl_main_filename": "workflow_ascat.cwl",
   "cwl_pointer": "",
-  "description": "Run Ascat to call the allele-specific copy number variants of tumors",
+  "description": "Run ASCAT to call the allele-specific copy number variants in tumor-normal sample",
   "institution": "INSTITUTION_UUID",
   "name": "workflow_ascat_VERSION",
   "aliases": ["cgap:workflow_ascat_VERSION"],
@@ -162,14 +162,14 @@
           ],
           "meta": {
               "analysis_step_types": [
-                  "Run Ascat to detect the allele-specific copy number"
+                  "Run ASCAT to call CNV in tumor-normal sample"
               ],
               "software_used": [
                 "/softwares/c91ebae7-03c3-4d93-8e28-03ce87d63c62",
                 "/softwares/34914c29-7a44-45ec-a5f9-b8d33d069b87"
               ]
           },
-          "name": "run Ascat",
+          "name": "run ASCAT",
           "outputs": [
               {
                   "meta": {
@@ -317,6 +317,6 @@
           ]
     }
   ],
-  "title": "Run ascat analysis",
+  "title": "Run CNV analysis with ASCAT",
   "uuid": "6ab682c4-7e40-4cce-9d81-5db3538d89cb"
 }
