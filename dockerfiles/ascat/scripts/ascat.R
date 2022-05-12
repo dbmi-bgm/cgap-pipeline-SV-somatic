@@ -67,7 +67,6 @@ if (!(opt$gender %in%  c("XX", "XY"))) {
 
 library(ASCAT)
 library(tidyverse)
-library(tibble)
 library(tidyr)
 
 ascat.prepareHTS(
@@ -111,26 +110,29 @@ output_segments <- subset(ascat.output$segments, select = -c(sample))
 write.table(output_segments, file=cnv_filename, sep="\t", quote=F, row.names=F, col.names=T)
 
 id <- "chrom_pos"
-ascat.bc$Germline_LogR <- tibble::rownames_to_column(ascat.bc$Germline_LogR , id)
+ascat.bc$Germline_LogR[, id] <- rownames(ascat.bc$Germline_LogR)
+ascat.bc$Germline_LogR <- ascat.bc$Germline_LogR[,c(id, "tumor")]
 colnames(ascat.bc$Germline_LogR) <- c(id, "germline_LogR")
 
-ascat.bc$Germline_BAF <- tibble::rownames_to_column(ascat.bc$Germline_BAF , id)
-colnames(ascat.bc$Germline_BAF) <- c(id, "germline_BAF")
 
-ascat.bc$Tumor_LogR <- tibble::rownames_to_column(ascat.bc$Tumor_LogR , id)
-colnames(ascat.bc$Tumor_LogR) <- c(id, "tumor_LogR")
+ascat.bc$Germline_BAF[, id] <- rownames(ascat.bc$Germline_BAF)
+colnames(ascat.bc$Germline_BAF) <- c("germline_BAF", id)
 
-ascat.bc$Tumor_BAF <- tibble::rownames_to_column(ascat.bc$Tumor_BAF , id)
-colnames(ascat.bc$Tumor_BAF) <- c(id, "tumor_BAF")
+ascat.bc$Tumor_LogR[, id] <- rownames(ascat.bc$Tumor_LogR)
+colnames(ascat.bc$Tumor_LogR) <- c("tumor_LogR", id)
+
+
+ascat.bc$Tumor_BAF[, id] <- rownames(ascat.bc$Tumor_BAF)
+colnames(ascat.bc$Tumor_BAF) <- c("tumor_BAF", id)
 
 
 tumor_BAF_segmented <- as.data.frame(ascat.bc$Tumor_BAF_segmented[[1]])
-tumor_BAF_segmented <- tibble::rownames_to_column(tumor_BAF_segmented, id)
-colnames(tumor_BAF_segmented) <- c(id, "tumor_BAF_segmented")
+tumor_BAF_segmented[, id] <- rownames(tumor_BAF_segmented)
+colnames(tumor_BAF_segmented) <- c("tumor_BAF_segmented", id)
 
 tumor_LogR_segmented <- as.data.frame(ascat.bc$Tumor_LogR_segmented)
-tumor_LogR_segmented <- tibble::rownames_to_column(tumor_LogR_segmented, id)
-colnames(tumor_LogR_segmented) <- c(id, "tumor_LogR_segmented")
+tumor_LogR_segmented[, id] <- rownames(tumor_LogR_segmented)
+colnames(tumor_LogR_segmented) <- c("tumor_LogR_segmented", id)
 
 measures_list <- list(ascat.bc$Germline_LogR, ascat.bc$Germline_BAF , ascat.bc$Tumor_LogR, ascat.bc$Tumor_BAF, tumor_LogR_segmented, tumor_BAF_segmented)
 measures_df <- measures_list %>% reduce(full_join, by=id) %>% separate(chrom_pos, c('Chrom', 'Pos'))

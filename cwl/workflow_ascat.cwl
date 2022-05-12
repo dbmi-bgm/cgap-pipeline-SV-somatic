@@ -40,9 +40,9 @@ outputs:
   - id: after_correction_tumor_germline
     type: File
     outputSource: ascat/after_correction_tumor_germline
-  - id: after_correction_tumor_tumor
+  - id: after_correction_tumor_tumour
     type: File
-    outputSource: ascat/after_correction_tumor_tumor
+    outputSource: ascat/after_correction_tumor_tumour
   - id: before_correction_tumor_tumour
     type: File
     outputSource: ascat/before_correction_tumor_tumour
@@ -76,6 +76,6 @@ steps:
         source: nthreads
       reference_data:
         source: reference_data
-    out: [BAF_LogR_tumor_germline, tumor_sunrise, tumor_rawprofile, cnv_ascat,tumor_ASPCF, before_correction_tumor_tumour, tumor_ASCATprofile, after_correction_tumor_germline, after_correction_tumor_tumor, ascat_objects]
+    out: [BAF_LogR_tumor_germline, tumor_sunrise, tumor_rawprofile, cnv_ascat,tumor_ASPCF, before_correction_tumor_tumour, tumor_ASCATprofile, after_correction_tumor_germline, after_correction_tumor_tumour, ascat_objects]
 
 doc: run run_ascat.sh

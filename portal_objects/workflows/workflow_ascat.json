@@ -39,7 +39,7 @@
     {
         "argument_format": "png",
         "argument_type": "Output processed file",
-        "workflow_argument_name": "after_correction_tumor_tumor"
+        "workflow_argument_name": "after_correction_tumor_tumour"
     },
     {
         "argument_format": "png",
@@ -193,10 +193,10 @@
                     "global": true,
                     "type": "data file"
                 },
-                "name": "after_correction_tumor_tumor",
+                "name": "after_correction_tumor_tumour",
                 "target": [
                 {
-                    "name": "after_correction_tumor_tumor"
+                    "name": "after_correction_tumor_tumour"
                 }
                 ]
             },

@@ -58,7 +58,7 @@ outputs:
     type: File
     outputBinding:
       glob: After_correction_tumor.germline.png
-  - id: after_correction_tumor_tumor
+  - id: after_correction_tumor_tumour
     type: File
     outputBinding:
       glob: After_correction_tumor.tumour.png

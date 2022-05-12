@@ -28,7 +28,6 @@ RUN conda install -c bioconda -y r-base==4.1.0 ascat==3.0.0 cancerit-allelecount
 ## other R packages
 RUN R -e "install.packages('optparse', repos='http://cran.rstudio.com/')"
 RUN R -e "install.packages('tidyverse', repos='http://cran.rstudio.com/')"
-RUN R -e "install.packages('tibble', repos='http://cran.rstudio.com/')"
 
 #######################################################################
 #     Scripts
