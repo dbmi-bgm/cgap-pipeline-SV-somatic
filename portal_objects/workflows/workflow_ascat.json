@@ -1,0 +1,322 @@
+{
+  "accession": "GAPWFJL4GOP",
+  "app_name": "workflow_ascat",
+  "app_version": "VERSION",
+  "arguments": [
+    {
+          "argument_format": "bam",
+          "argument_type": "Input file",
+          "workflow_argument_name": "tumor_file"
+    },
+    {
+          "argument_format": "bam",
+          "argument_type": "Input file",
+          "workflow_argument_name": "normal_file"
+    },
+    {
+        "argument_format": "tar_gz",
+        "argument_type": "Input file",
+        "workflow_argument_name": "reference_data"
+    },
+    {
+        "argument_type": "parameter",
+        "workflow_argument_name": "gender"
+    },
+    {
+        "argument_type": "parameter",
+        "workflow_argument_name": "nthreads"
+    },
+    {
+        "argument_format": "tsv_gz",
+        "argument_type": "Output processed file",
+        "workflow_argument_name": "BAF_LogR_tumor_germline"
+    },
+    {
+        "argument_format": "png",
+        "argument_type": "Output processed file",
+        "workflow_argument_name": "after_correction_tumor_germline"
+    },
+    {
+        "argument_format": "png",
+        "argument_type": "Output processed file",
+        "workflow_argument_name": "after_correction_tumor_tumour"
+    },
+    {
+        "argument_format": "png",
+        "argument_type": "Output processed file",
+        "workflow_argument_name": "before_correction_tumor_tumour"
+    },
+    {
+        "argument_format": "png",
+        "argument_type": "Output processed file",
+        "workflow_argument_name": "tumor_ASCATprofile"
+    },
+    {
+        "argument_format": "png",
+        "argument_type": "Output processed file",
+        "workflow_argument_name": "tumor_ASPCF"
+    },
+    {
+        "argument_format": "png",
+        "argument_type": "Output processed file",
+        "workflow_argument_name": "tumor_rawprofile"
+    },
+    {
+        "argument_format": "png",
+        "argument_type": "Output processed file",
+        "workflow_argument_name": "tumor_sunrise"
+    },
+    {
+        "argument_format": "tsv_gz",
+        "argument_type": "Output processed file",
+        "workflow_argument_name": "cnv_ascat"
+    },
+    {
+        "argument_format": "Rdata",
+        "argument_type": "Output processed file",
+        "workflow_argument_name": "ascat_objects"
+    }
+
+  ],
+  "project": "PROJECT_UUID",
+  "category": ["processing"],
+  "cwl_child_filenames": ["ascat.cwl"],
+  "cwl_directory_url_v1": "s3://CWLBUCKET/PIPELINE/VERSION",
+  "cwl_main_filename": "workflow_ascat.cwl",
+  "cwl_pointer": "",
+  "description": "Run ASCAT to call allele-specific copy number variants in tumor-normal sample",
+  "institution": "INSTITUTION_UUID",
+  "name": "workflow_ascat_VERSION",
+  "aliases": ["cgap:workflow_ascat_VERSION"],
+  "steps": [
+    {
+          "inputs": [
+              {
+                  "meta": {
+                      "cardinality": "single",
+                      "file_format": "bam",
+                      "global": true,
+                      "type": "data file"
+                  },
+                  "name": "tumor_file",
+                  "source": [
+                      {
+                          "name": "tumor_file"
+                      }
+                  ]
+              },
+              {
+                  "meta": {
+                      "cardinality": "single",
+                      "file_format": "bam",
+                      "global": true,
+                      "type": "data file"
+                  },
+                  "name": "normal_file",
+                  "source": [
+                      {
+                          "name": "normal_file"
+                      }
+                  ]
+              },
+              {
+                "meta": {
+                    "cardinality": "single",
+                    "file_format": "tar_gz",
+                    "global": true,
+                    "type": "data file"
+                },
+                "name": "reference_data",
+                "source": [
+                    {
+                        "name": "reference_data"
+                    }
+                ]
+            },
+            {
+                  "meta": {
+                      "cardinality": "single",
+                      "global": true,
+                      "type": "parameter"
+                  },
+                  "name": "nthreads",
+                  "source": [
+                      {
+                          "name": "nthreads"
+                      }
+                  ]
+              },
+            {
+                  "meta": {
+                      "cardinality": "single",
+                      "global": true,
+                      "type": "parameter"
+                  },
+                  "name": "gender",
+                  "source": [
+                      {
+                          "name": "gender"
+                      }
+                  ]
+            }
+          ],
+          "meta": {
+              "analysis_step_types": [
+                  "Run ASCAT to call CNV in tumor-normal sample"
+              ],
+              "software_used": [
+                "/softwares/c91ebae7-03c3-4d93-8e28-03ce87d63c62",
+                "/softwares/34914c29-7a44-45ec-a5f9-b8d33d069b87"
+              ]
+          },
+          "name": "run ASCAT",
+          "outputs": [
+              {
+                  "meta": {
+                      "cardinality": "single",
+                      "file_format": "png",
+                      "global": true,
+                      "type": "data file"
+                  },
+                  "name": "after_correction_tumor_germline",
+                  "target": [
+                    {
+                        "name": "after_correction_tumor_germline"
+                    }
+                ]
+              },
+
+              {
+                "meta": {
+                    "cardinality": "single",
+                    "file_format": "png",
+                    "global": true,
+                    "type": "data file"
+                },
+                "name": "after_correction_tumor_tumour",
+                "target": [
+                {
+                    "name": "after_correction_tumor_tumour"
+                }
+                ]
+            },
+
+            {
+                "meta": {
+                    "cardinality": "single",
+                    "file_format": "png",
+                    "global": true,
+                    "type": "data file"
+                },
+                "name": "before_correction_tumor_tumour"
+            },
+
+            {
+                "meta": {
+                    "cardinality": "single",
+                    "file_format": "png",
+                    "global": true,
+                    "type": "data file"
+                },
+                "name": "tumor_ASCATprofile",
+                "target": [
+                {
+                    "name": "tumor_ASCATprofile"
+                }
+                ]
+            },
+
+            {
+                "meta": {
+                    "cardinality": "single",
+                    "file_format": "png",
+                    "global": true,
+                    "type": "data file"
+                },
+                "name": "tumor_ASPCF",
+                "target": [
+                    {
+                        "name": "tumor_ASPCF"
+                    }
+                    ]
+                
+            },
+
+            {
+                "meta": {
+                    "cardinality": "single",
+                    "file_format": "png",
+                    "global": true,
+                    "type": "data file"
+                },
+                "name": "tumor_rawprofile",
+                "target": [
+                    {
+                        "name": "tumor_rawprofile"
+                    }
+                    ]
+            },
+
+            {
+                "meta": {
+                    "cardinality": "single",
+                    "file_format": "png",
+                    "global": true,
+                    "type": "data file"
+                },
+                "name": "tumor_sunrise",
+                "target": [
+                    {
+                        "name": "tumor_sunrise"
+                    }
+                    ]
+            },
+            {
+                "meta": {
+                    "cardinality": "single",
+                    "file_format": "tsv_gz",
+                    "global": true,
+                    "type": "data file"
+                },
+                "name": "cnv_ascat",
+                "target": [
+                    {
+                        "name": "cnv_ascat"
+                    }
+                ]
+            },
+            {
+                "meta": {
+                    "cardinality": "single",
+                    "file_format": "Rdata",
+                    "global": true,
+                    "type": "data file"
+                },
+                "name": "ascat_objects",
+                "target": [
+                    {
+                        "name": "ascat_objects"
+                    }
+                ]
+            },
+            {
+                "meta": {
+                    "cardinality": "single",
+                    "file_format": "tsv_gz",
+                    "global": true,
+                    "type": "data file"
+                },
+                "name": "BAF_LogR_tumor_germline"
+                ,
+                "target": [
+                    {
+                        "name": "BAF_LogR_tumor_germline"
+                    }
+                ]
+            }
+          ]
+    }
+  ],
+  "title": "Run CNV analysis with ASCAT",
+  "uuid": "6ab682c4-7e40-4cce-9d81-5db3538d89cb"
+}
