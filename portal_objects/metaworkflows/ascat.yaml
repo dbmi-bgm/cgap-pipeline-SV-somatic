@@ -1,0 +1,140 @@
+## Pipeline information #####################################
+#     General information for the pipeline
+#############################################################
+name: WGS_CNV_somatic_ascat
+description: Call CNV on tumor-normal samples with ASCAT |
+             Prioritize somatic mutations
+
+## General arguments ########################################
+#     Pipeline input, reference files, and general arguments
+#       define all arguments for the pipeline here
+#############################################################
+input:
+
+  tumor_file:
+    argument_type: file.bam
+    dimensionality: 1
+
+  normal_file:
+    argument_type: file.bam
+    dimensionality: 1
+
+  gender:
+    argument_type: parameter.string
+  
+  nthreads:
+    argument_type: parameter.integer
+  
+  reference_data:
+    argument_type: file.tar_gz
+    files:
+      - ascat_reference_loci_alleles_GC_G1000@hg38
+  cgap_genes:
+    argument_type: file.tsv_gz
+    files:
+      - cgap_genes@hg38
+  gene_panel:
+    argument_type: file.tsv_gz
+    files:
+      - gene_panel_hartwig@hg38
+
+
+## Workflows and dependencies ###############################
+#     Information for the workflows and their dependencies
+#############################################################
+workflows:
+
+  ## Workflow definition #####################
+  #   cram2fastq
+  ############################################
+  ascat:
+
+    ## Workflow arguments ##############
+    ####################################
+    input:
+
+      tumor_file:
+        argument_type: file.bam
+        input_dimension: 1
+
+      normal_file:
+        argument_type: file.bam
+        input_dimension: 1
+
+      gender:
+        argument_type: parameter.string
+      
+      nthreads:
+        argument_type: parameter.integer
+        value: "23"
+      
+      reference_data:
+        argument_type: file.tar_gz
+  
+    ## Output ##########################
+    ####################################
+    output:
+
+      BAF_LogR_tumor_germline:
+        file_type: tsv
+        description: BAF and LogR for the germline sample
+      after_correction_tumor_germline:
+        file_type: png
+        description: correctected LogR of the tumor sample with genomic GC content
+      after_correction_tumor_tumour:
+        file_type: png
+      before_correction_tumor_tumour:
+        file_type: png
+      tumor_ASCATprofile:
+        file_type: png
+      tumor_ASPCF:
+        file_type: png
+      tumor_rawprofile:
+        file_type: png
+      tumor_sunrise:
+        file_type: png
+      cnv_ascat:
+        file_type: tsv_gz
+      ascat_objects:
+        file_type: Rdata
+      
+
+    ## EC2 Configuration to use ########
+    ####################################
+    config:
+        instance_type:
+          - c5.4xlarge
+        ebs_size: 1.5x
+        EBS_optimized: True
+        spot_instance: False
+        run_name: run_workflow_ascat
+        behavior_on_capacity_limit: wait_and_retry
+  driver_catalog:
+      input:
+        ascat:
+          argument_type: file.tsv_gz
+          source: ascat
+          source_argument_name: cnv_ascat
+        ascat_objects:
+          argument_type: file.Rdata
+          source: ascat
+          source_argument_name: ascat_objects
+        cgap_genes:
+          argument_type: file.tsv_gz
+        gene_panel:
+          argument_type: file.tsv_gz
+      
+      output:
+        putative_drivers:
+          file_type: tsv_gz
+      
+      config:
+        instance_type:
+          - t3.xlarge
+        ebs_size: 1.5x
+        EBS_optimized: True
+        spot_instance: False
+        run_name: run_driver_catalog
+        behavior_on_capacity_limit: wait_and_retry
+
+

@@ -1,0 +1,38 @@
+# Workflow information #####################################
+#     General information for the workflow
+#############################################################
+name: driver_catalog
+description: Run CNV analysis with ASCAT
+
+runner:
+  language: cwl
+  main: driver_catalog.cwl
+
+
+
+## Input information ########################################
+#     Input files and parameters
+#############################################################
+input:
+
+  ascat:
+    argument_type: file.tsv_gz
+
+  gene_panel:
+    argument_type: file.tsv_gz
+
+  cgap_genes:
+    argument_type: file.tsv_gz
+
+  ascat_objects:
+    argument_type: file.Rdata
+
+
+## Output information #######################################
+#     Output files
+#############################################################
+output:
+
+  putative_drivers:
+    argument_type: file.tsv_gz
+  
