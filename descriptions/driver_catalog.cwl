@@ -18,40 +18,38 @@ inputs:
     type: File
     inputBinding:
         prefix: "--ascat"
-    doc: TODO
+    doc: tsv file containing ASCAT CNVs
 
   - id: gene_panel
     type: File
     inputBinding:
         prefix: "--gene_panel"
-    doc: TODO
+    doc: tsv configuration file of which genes to add to the driver catalog from Hartwig Medical Foundation
   - id: cgap_genes
     type: File
     inputBinding:
         prefix: "--cgap_genes"
-    doc: TODO
+    doc: tsv file of genes available on CGAP
 
   - id: ascat_objects
     type: File
     inputBinding:
         prefix: "--ascat_objects"
-    doc: TODO
-    
+    doc: ascat objects from the CGAP SV somatic pipeline (ASCAT)
+
   - id: output
     type: string
     inputBinding:
         prefix: "--output"
     default: putative_drivers_CNV_ASCAT.tsv
-    doc: TODO
-
-
+    doc: output file name
 
 outputs:
   - id: putative_drivers
     type: File
     outputBinding:
       glob: putative_drivers_CNV_ASCAT.tsv.gz
-
+    doc: tsv file containing reported putative drivers
 
 doc: |
   run driver_catalog.sh

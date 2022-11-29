@@ -8,33 +8,35 @@ option_list <- list(
     c("--ascat"),
     action = "store",
     type = "character",
-    help = ""
+    help = "tsv file containing ASCAT CNVs"
   ),
   
   make_option(
     c("--gene_panel"),
     action = "store",
     type = "character",
-    help = ""
+    help = "tsv configuration file of which genes to add to the driver catalog from Hartwig Medical Foundation"
   ),
   
   make_option(
     c("--cgap_genes"),
     type = "character",
     action = "store",
-    help = ""
+    help = "tsv file containing genes supported by CGAP"
   ),
+
   make_option(
     c("--output"),
     type = "character",
     action = "store",
-    help = ""
+    help = "tsv file containing reported putative drivers"
   ),
-    make_option(
+
+  make_option(
     c("--ascat_objects"),
     type = "character",
     action = "store",
-    help = ""
+    help = "ascat objects from the CGAP SV somatic pipeline (ASCAT) (Rdata format)"
   )
 )
 
@@ -65,7 +67,6 @@ ascat.gr$total.cn <- ascat_table$copyNumber
 ascat.gr$minor.cn <- ascat_table$nMinor
 ascat.gr$major.cn <- ascat_table$nMajor
 
-
 #genes from CGAP
 gene_table <- read.table(gzfile(opt$cgap_genes),
                          sep = '\t',
@@ -92,7 +93,6 @@ overlap.df <- overlap.df %>%
          ID_cv = subjectHits)
 
 
-
 # left join :  overlaps with ascat table by ID_cv to to find  copy numbers in each region
 overlap.df <-
   merge(x = overlap.df,
@@ -108,19 +108,15 @@ grouped <- overlap.df %>% group_by(ID_gene)  %>%
             min_subjectHits = min(copyNumber))
 
 
-#final <- merge(x=gene_table,y=grouped,by="ID_gene", all.x=TRUE) %>%
-#               replace(is.na(.), 2) # can I do this????  we have all the genes including those that do not contain CNVs
-
 # inner join with genes from CGAP to find names of the genes, ID gene stores only index
 final <-
   merge(x = gene_table, y = grouped, by = "ID_gene") # we have genes that we found some CNVs in
 
 
-
-
 # merge with panel by gene symbol to query the decision tree 
 final <-
   merge(x = final, y = driver_gene_panel, by = 'gene') #merges only common genes
+
 
 #loading ascat objects to check ploidy 
 load(opt$ascat_objects)
@@ -155,8 +151,6 @@ final$deletion <-
          FALSE)
 
 
-
-
 #select only relevant fields
 final <-
   final %>% select(
@@ -164,7 +158,6 @@ final <-
     chr,
     start,
     end,
-    #strand,
     max_subjectHits,
     min_subjectHits,
     amplification,
@@ -182,4 +175,3 @@ final <- final %>% select(gene,
                  category)
 
 write.table(final, file=opt$output, sep='\t',row.names = FALSE, quote=FALSE)
-
