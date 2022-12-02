@@ -172,6 +172,6 @@ final <- final %>% select(gene,
                  chr,
                  start,
                  end,
-                 category)
+                 category) %>% rename(chrom = chr) #rename it for GosCan
 
 write.table(final, file=opt$output, sep='\t',row.names = FALSE, quote=FALSE)

@@ -14,7 +14,7 @@ accession: GAPFI6BNMYRO
 # Datasource for the driver catalog
 ################################################################
 name: cgap_genes
-description: Datasource for genes supported by CGAP in a tabular format
+description: Datasource for genes supported by CGAP
 format: tsv_gz
 version: hg38
 uuid: 335f7c0f-640e-44b9-a0da-bbe2728f782c
@@ -32,7 +32,7 @@ accession: GAPFI6BNWA1O
 ---
 
 name: somatic_hotspot_mutations
-description: todo
+description: Datasource for somatic hotspot locations
 format: vcf_gz
 version: hg38
 uuid: 19f548db-5491-464c-babd-a9f4f0b2c8c4
