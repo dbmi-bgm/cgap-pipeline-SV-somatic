@@ -33,6 +33,6 @@ input:
 #############################################################
 output:
 
-  putative_drivers:
+  putative_drivers_tsv:
     argument_type: file.tsv_gz
   

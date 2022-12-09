@@ -45,10 +45,10 @@ inputs:
     doc: output file name
 
 outputs:
-  - id: putative_drivers
+  - id: putative_drivers_tsv
     type: File
     outputBinding:
-      glob: putative_drivers_CNV_ASCAT.tsv.gz
+      glob: $(inputs.output)
     doc: tsv file containing reported putative drivers
 
 doc: |

@@ -125,7 +125,7 @@ workflows:
           argument_type: file.tsv_gz
       
       output:
-        putative_drivers:
+        putative_drivers_tsv:
           file_type: tsv_gz
       
       config:
