@@ -1,8 +1,8 @@
 # Workflow information #####################################
 #     General information for the workflow
 #############################################################
-name: putative_drivers
-description: Run CNV analysis with ASCAT
+name: putative_drivers_cnv
+description: Find putative driver mutations from CNVs
 
 runner:
   language: cwl
