@@ -1,7 +1,7 @@
 # Workflow information #####################################
 #     General information for the workflow
 #############################################################
-name: driver_catalog
+name: putative_drivers
 description: Run CNV analysis with ASCAT
 
 runner:

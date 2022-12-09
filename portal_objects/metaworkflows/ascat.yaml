@@ -109,7 +109,7 @@ workflows:
         spot_instance: False
         run_name: run_workflow_ascat
         behavior_on_capacity_limit: wait_and_retry
-  driver_catalog:
+  putative_drivers:
       input:
         ascat:
           argument_type: file.tsv_gz
