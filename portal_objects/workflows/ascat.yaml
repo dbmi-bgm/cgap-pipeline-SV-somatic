@@ -6,9 +6,7 @@ description: Run CNV analysis with ASCAT
 
 runner:
   language: cwl
-  main: workflow_ascat.cwl
-  child:
-    - ascat.cwl
+  main: ascat.cwl
 
 software:
   - ascat@3.0.0

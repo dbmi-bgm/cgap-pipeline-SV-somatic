@@ -48,7 +48,7 @@ outputs:
   - id: putative_drivers_tsv
     type: File
     outputBinding:
-      glob: $(inputs.output)
+      glob: $(inputs.output).gz
     doc: tsv file containing reported putative drivers
 
 doc: |
