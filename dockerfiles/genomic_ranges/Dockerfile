@@ -19,7 +19,7 @@ RUN apt-get update && apt-get install -y \
 RUN apt-get install -y --no-install-recommends r-base
 RUN apt-get install -y --no-install-recommends r-cran-tidyverse r-cran-optparse r-cran-biocmanager
 
-#install GenomicRanges
+## Install GenomicRanges
 RUN R -e "BiocManager::install('GenomicRanges')"
 
 #######################################################################
