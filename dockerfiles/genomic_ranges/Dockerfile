@@ -12,7 +12,7 @@ MAINTAINER Michele Berselli (berselli.michele@gmail.com), Dominika Maziec (domin
 #######################################################################
 #     Software
 #######################################################################
-#install R
+## Install R
 RUN apt-get update && apt-get install -y \
     locales \
     tabix 
