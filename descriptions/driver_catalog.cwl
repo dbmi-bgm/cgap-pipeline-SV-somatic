@@ -25,6 +25,7 @@ inputs:
     inputBinding:
         prefix: "--gene_panel"
     doc: tsv configuration file of which genes to add to the driver catalog from Hartwig Medical Foundation
+
   - id: cgap_genes
     type: File
     inputBinding:
