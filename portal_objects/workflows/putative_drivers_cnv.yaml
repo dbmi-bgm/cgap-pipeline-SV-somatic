@@ -2,7 +2,8 @@
 #     General information for the workflow
 #############################################################
 name: putative_drivers_cnv
-description: Find putative driver mutations from CNVs
+description: Identify putative cancer drivers from CNV calls.
+
 
 runner:
   language: cwl
