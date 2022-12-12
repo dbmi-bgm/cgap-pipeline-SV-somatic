@@ -2,7 +2,8 @@
 # Datasource for ASCAT
 ################################################################
 name: ascat_reference_loci_alleles_GC_G1000
-description: Datasource for loci, alleles and GC correction files from G1000/ASCAT. |
+description: Loci, alleles and GC correction files from 1000 Genomes. |
+             From ASCAT repository. |
              Build hg38/GRCh38.
 format: tar_gz
 version: hg38
@@ -15,17 +16,18 @@ accession: GAPFI6BNMYRO
 # Datasource for the driver catalog
 ################################################################
 name: cgap_genes
-description: Datasource for genes supported by CGAP. |
+description: Genes supported by CGAP. |
              Build hg38/GRCh38.
 format: tsv_gz
-version: v09132022
+version: v0.4.6
 uuid: 335f7c0f-640e-44b9-a0da-bbe2728f782c
 accession: GAPFI6BQNY5O
 
 ---
 
 name: gene_panel_hartwig
-description: Configuration file of which genes to add to the driver catalog. |
+description: Genes to add to the driver catalog. |
+             From Hartwig Medical Foundation. |
              Build hg38/GRCh38.
 format: tsv_gz
 version: v09132022
@@ -35,7 +37,8 @@ accession: GAPFI6BNWA1O
 ---
 
 name: somatic_hotspot_mutations
-description: Datasource for somatic hotspot locations. |
+description: Somatic hotspot locations. |
+             From Hartwig Medical Foundation. |
              Build hg38/GRCh38.
 format: vcf_gz
 version: v09132022
