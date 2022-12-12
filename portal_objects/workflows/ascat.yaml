@@ -29,7 +29,6 @@ input:
   nthreads:
     argument_type: parameter.string
 
-
 ## Output information #######################################
 #     Output files
 #############################################################
