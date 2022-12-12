@@ -12,6 +12,7 @@ MAINTAINER Michele Berselli (berselli.michele@gmail.com), Dominika Maziec (domin
 RUN apt-get update && apt-get install -y \
     locales \
     tabix 
+
 #######################################################################
 #     Software
 #######################################################################
@@ -30,9 +31,11 @@ WORKDIR /usr/local/bin
 #######################################################################
 #     Scripts
 #######################################################################
+## driver_catalog.sh
 COPY scripts/driver_catalog.sh .
 RUN chmod +x driver_catalog.sh
 
+## postprocess_ascat.R
 COPY scripts/postprocess_ascat.R .
 
 #######################################################################
