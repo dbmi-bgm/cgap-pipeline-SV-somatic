@@ -9,7 +9,6 @@ runner:
   language: cwl
   main: driver_catalog.cwl
 
-
 ## Input information ########################################
 #     Input files and parameters
 #############################################################
