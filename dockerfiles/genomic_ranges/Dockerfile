@@ -32,6 +32,7 @@ WORKDIR /usr/local/bin
 #######################################################################
 COPY scripts/driver_catalog.sh .
 RUN chmod +x driver_catalog.sh
+
 COPY scripts/postprocess_ascat.R .
 
 #######################################################################
