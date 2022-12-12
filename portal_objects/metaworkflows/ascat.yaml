@@ -2,8 +2,8 @@
 #     General information for the pipeline
 #############################################################
 name: WGS_CNV_somatic_ascat
-description: Call CNV on tumor-normal samples with ASCAT |
-             Prioritize somatic mutations
+description: Call CNVs on tumor-normal samples with ASCAT. |
+             Prioritize putative driver mutations.
 
 ## General arguments ########################################
 #     Pipeline input, reference files, and general arguments
@@ -21,22 +21,24 @@ input:
 
   gender:
     argument_type: parameter.string
-  
+
   nthreads:
     argument_type: parameter.integer
-  
+
   reference_data:
     argument_type: file.tar_gz
     files:
       - ascat_reference_loci_alleles_GC_G1000@hg38
+
   cgap_genes:
     argument_type: file.tsv_gz
     files:
-      - cgap_genes@hg38
+      - cgap_genes@0.4.6
+
   gene_panel:
     argument_type: file.tsv_gz
     files:
-      - gene_panel_hartwig@hg38
+      - gene_panel_hartwig@v09132022
 
 
 ## Workflows and dependencies ###############################
@@ -45,7 +47,7 @@ input:
 workflows:
 
   ## Workflow definition #####################
-  #   cram2fastq
+  #   ascat
   ############################################
   ascat:
 
@@ -63,41 +65,57 @@ workflows:
 
       gender:
         argument_type: parameter.string
-      
+
       nthreads:
         argument_type: parameter.integer
         value: "23"
-      
+
       reference_data:
         argument_type: file.tar_gz
-  
+
     ## Output ##########################
     ####################################
     output:
 
       BAF_LogR_tumor_germline:
-        file_type: tsv
-        description: BAF and LogR for the germline sample
+        file_type: BAF and LogR TSV
+        description: BAF and LogR for the germline sample from ASCAT in TSV format
+
       after_correction_tumor_germline:
-        file_type: png
-        description: correctected LogR of the tumor sample with genomic GC content
+        file_type: LogR PNG
+        description: correctected LogR of the tumor sample with genomic GC content from ASCAT in PNG format
+
       after_correction_tumor_tumour:
-        file_type: png
+        file_type: ASCAT PNG
+        description: supplementary output from ASCAT in PNG format
+
       before_correction_tumor_tumour:
-        file_type: png
+        file_type: ASCAT PNG
+        description: supplementary output from ASCAT in PNG format
+
       tumor_ASCATprofile:
-        file_type: png
+        file_type: ASCAT PNG
+        description: supplementary output from ASCAT in PNG format
+
       tumor_ASPCF:
-        file_type: png
+        file_type: ASCAT PNG
+        description: supplementary output from ASCAT in PNG format
+
       tumor_rawprofile:
-        file_type: png
+        file_type: ASCAT PNG
+        description: supplementary output from ASCAT in PNG format
+
       tumor_sunrise:
-        file_type: png
+        file_type: ASCAT PNG
+        description: supplementary output from ASCAT in PNG format
+
       cnv_ascat:
-        file_type: tsv_gz
+        file_type: ASCAT TSV
+        description: output from ASCAT in TSV format
+
       ascat_objects:
-        file_type: Rdata
-      
+        file_type: Rdata objects
+        description: objects from ASCAT run in Rdata format
 
     ## EC2 Configuration to use ########
     ####################################
@@ -106,35 +124,50 @@ workflows:
           - c5.4xlarge
         ebs_size: 1.5x
         EBS_optimized: True
-        spot_instance: False
-        run_name: run_workflow_ascat
+        spot_instance: True
+        run_name: run_ascat
         behavior_on_capacity_limit: wait_and_retry
+
+  ## Workflow definition #####################
+  #   putative_drivers_cnv
+  ############################################
   putative_drivers_cnv:
-      input:
-        ascat:
-          argument_type: file.tsv_gz
-          source: ascat
-          source_argument_name: cnv_ascat
-        ascat_objects:
-          argument_type: file.Rdata
-          source: ascat
-          source_argument_name: ascat_objects
-        cgap_genes:
-          argument_type: file.tsv_gz
-        gene_panel:
-          argument_type: file.tsv_gz
-      
-      output:
-        putative_drivers_tsv:
-          file_type: tsv_gz
-      
-      config:
-        instance_type:
-          - t3.xlarge
-        ebs_size: 1.5x
-        EBS_optimized: True
-        spot_instance: False
-        run_name: run_driver_catalog
-        behavior_on_capacity_limit: wait_and_retry
 
+    ## Workflow arguments ##############
+    ####################################
+    input:
 
+      ascat:
+        argument_type: file.tsv_gz
+        source: ascat
+        source_argument_name: cnv_ascat
+
+      ascat_objects:
+        argument_type: file.Rdata
+        source: ascat
+        source_argument_name: ascat_objects
+
+      cgap_genes:
+        argument_type: file.tsv_gz
+
+      gene_panel:
+        argument_type: file.tsv_gz
+
+    ## Output ##########################
+    ####################################
+    output:
+
+      putative_drivers_tsv:
+        file_type: drivers TSV
+        description: output from drivers prioritization step in TSV format
+
+    ## EC2 Configuration to use ########
+    ####################################
+    config:
+      instance_type:
+        - t3.xlarge
+      ebs_size: 1.5x
+      EBS_optimized: True
+      spot_instance: True
+      run_name: run_putative_drivers_cnv
+      behavior_on_capacity_limit: wait_and_retry
