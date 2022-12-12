@@ -27,7 +27,6 @@ input:
   ascat_objects:
     argument_type: file.Rdata
 
-
 ## Output information #######################################
 #     Output files
 #############################################################
