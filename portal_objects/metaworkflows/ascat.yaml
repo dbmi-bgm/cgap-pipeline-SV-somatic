@@ -40,7 +40,6 @@ input:
     files:
       - gene_panel_hartwig@v09132022
 
-
 ## Workflows and dependencies ###############################
 #     Information for the workflows and their dependencies
 #############################################################
