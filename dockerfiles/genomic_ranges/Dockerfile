@@ -9,13 +9,13 @@ MAINTAINER Michele Berselli (berselli.michele@gmail.com), Dominika Maziec (domin
 #       - tabix brings in bgzip and tabix
 #       - locales for UTF-8
 #######################################################################
+RUN apt-get update && apt-get install -y \
+    locales \
+    tabix 
 #######################################################################
 #     Software
 #######################################################################
 ## Install R
-RUN apt-get update && apt-get install -y \
-    locales \
-    tabix 
 RUN apt-get install -y --no-install-recommends r-base
 RUN apt-get install -y --no-install-recommends r-cran-tidyverse r-cran-optparse r-cran-biocmanager
 
