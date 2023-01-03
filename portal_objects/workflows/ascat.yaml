@@ -36,21 +36,30 @@ output:
 
   BAF_LogR_tumor_germline:
     argument_type: file.tsv_gz
+
   after_correction_tumor_germline:
     argument_type: file.png
+
   after_correction_tumor_tumour:
     argument_type: file.png
+
   before_correction_tumor_tumour:
     argument_type: file.png
+
   tumor_ASCATprofile:
     argument_type: file.png
+
   tumor_ASPCF:
     argument_type: file.png
+
   tumor_rawprofile:
     argument_type: file.png
+
   tumor_sunrise:
     argument_type: file.png
+
   cnv_ascat:
     argument_type: file.tsv_gz
+
   ascat_objects:
     argument_type: file.Rdata
