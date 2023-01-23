@@ -1,0 +1,18 @@
+
+################################################################
+# ASCAT, 3.0.0
+################################################################
+name: ascat
+version: 3.0.0
+source_url: https://github.com/VanLoo-lab/ascat
+
+--- 
+
+################################################################
+# cancerit-allelecount, 4.3.0
+################################################################
+name: cancerit-allelecount
+version: 4.3.0
+source_url: https://anaconda.org/bioconda/cancerit-allelecount
+
+

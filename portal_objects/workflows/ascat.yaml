@@ -1,0 +1,65 @@
+## Workflow information #####################################
+#     General information for the workflow
+#############################################################
+name: ascat
+description: Run CNV analysis with ASCAT.
+
+runner:
+  language: cwl
+  main: ascat.cwl
+
+software:
+  - ascat@3.0.0
+  - cancerit-allelecount@4.3.0
+
+## Input information ########################################
+#     Input files and parameters
+#############################################################
+input:
+
+  tumor_file:
+    argument_type: file.bam
+
+  normal_file:
+    argument_type: file.bam
+
+  gender:
+    argument_type: parameter.string
+
+  nthreads:
+    argument_type: parameter.string
+
+## Output information #######################################
+#     Output files
+#############################################################
+output:
+
+  BAF_LogR_tumor_germline:
+    argument_type: file.tsv_gz
+
+  after_correction_tumor_germline:
+    argument_type: file.png
+
+  after_correction_tumor_tumour:
+    argument_type: file.png
+
+  before_correction_tumor_tumour:
+    argument_type: file.png
+
+  tumor_ASCATprofile:
+    argument_type: file.png
+
+  tumor_ASPCF:
+    argument_type: file.png
+
+  tumor_rawprofile:
+    argument_type: file.png
+
+  tumor_sunrise:
+    argument_type: file.png
+
+  cnv_ascat:
+    argument_type: file.tsv_gz
+
+  ascat_objects:
+    argument_type: file.Rdata
