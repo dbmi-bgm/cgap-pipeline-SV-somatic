@@ -32,4 +32,3 @@ output:
 
   putative_drivers_tsv:
     argument_type: file.tsv_gz
-  
