@@ -24,6 +24,7 @@ input:
 
   nthreads:
     argument_type: parameter.integer
+    value: "23"
 
   reference_data:
     argument_type: file.tar_gz
@@ -67,7 +68,6 @@ workflows:
 
       nthreads:
         argument_type: parameter.integer
-        value: "23"
 
       reference_data:
         argument_type: file.tar_gz
