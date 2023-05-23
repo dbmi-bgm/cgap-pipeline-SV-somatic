@@ -14,27 +14,27 @@ hints:
 baseCommand: [run_ascat.sh]
 
 inputs:
-  - id: tumor_file
+  - id: input_tumor_bam
     type: File
     inputBinding:
-      prefix: "--tumor_file"
+      prefix: "--input_tumor_bam"
     secondaryFiles:
       - .bai
     doc: tumor sample BAM file
 
-  - id: normal_file
+  - id: input_normal_bam
     type: File
     inputBinding:
-      prefix: "--normal_file"
+      prefix: "--input_normal_bam"
     secondaryFiles:
       - .bai
     doc: normal sample BAM file
 
-  - id: gender
+  - id: sex
     type: string
     inputBinding:
-        prefix: "--gender"
-    doc: gender
+        prefix: "--sex"
+    doc: sex
 
   - id: nthreads
     type: int

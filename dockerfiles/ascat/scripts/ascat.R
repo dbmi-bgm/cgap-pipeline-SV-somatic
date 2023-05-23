@@ -16,24 +16,24 @@ measures_file_name <- "BAF_LogR_tumor_germline.tsv"
 
 option_list <- list(
   make_option(
-    c("--tumor_file"),
+    c("--input_tumor_bam"),
     action = "store",
     type = "character",
     help = "Tumor sample in BAM"
   ),
   
   make_option(
-    c("--normal_file"),
+    c("--input_normal_bam"),
     action = "store",
     type = "character",
     help = "Normal sample in BAM"
   ),
   
   make_option(
-    c("--gender"),
+    c("--sex"),
     type = "character",
     action = "store",
-    help = "Gender"
+    help = "sex"
   ), 
   make_option(
     c("--nthreads"),
@@ -46,14 +46,14 @@ option_list <- list(
 
 
 REQUIRED_PARAMS <-
-  c("tumor_file",
-    "normal_file",
-    "gender")
+  c("input_tumor_bam",
+    "input_normal_bam",
+    "sex")
 
 opt = parse_args(OptionParser(option_list = option_list))
 
-if (is.null(opt$tumor_file) |
-    is.null(opt$normal_file) | is.null(opt$gender)) {
+if (is.null(opt$input_tumor_bam) |
+    is.null(opt$input_normal_bam) | is.null(opt$sex)) {
   stop(paste(
     c("Specify all required parameters: ", REQUIRED_PARAMS),
     collapse = " "
@@ -61,8 +61,8 @@ if (is.null(opt$tumor_file) |
   
 }
 
-if (!(opt$gender %in%  c("XX", "XY"))) {
-  stop("Provide correct gender: XY or XX")
+if (!(opt$sex %in%  c("XX", "XY"))) {
+  stop("Provide correct sex: XY or XX")
 }
 
 library(ASCAT)
@@ -70,14 +70,14 @@ library(tidyverse)
 library(tidyr)
 
 ascat.prepareHTS(
-  tumourseqfile = opt$tumor_file,
-  normalseqfile = opt$normal_file,
+  tumourseqfile = opt$input_tumor_bam,
+  normalseqfile = opt$input_normal_bam,
   tumourname = tumor_name,
   normalname = normal_name,
   allelecounter_exe = "/miniconda3/bin/alleleCounter",
   alleles.prefix = "G1000_alleles_hg38_chr",
   loci.prefix = "G1000_loci_hg38_chr",
-  gender = opt$gender,
+  sex = opt$sex,
   genomeVersion = GENOME_VERSION,
   nthreads = opt$threads,
   tumourLogR_file = tumorLogR_file_name,

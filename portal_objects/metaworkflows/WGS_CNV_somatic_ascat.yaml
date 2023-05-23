@@ -11,15 +11,15 @@ description: Call CNVs on tumor-normal samples with ASCAT. |
 #############################################################
 input:
 
-  tumor_file:
+  input_tumor_bam:
     argument_type: file.bam
     dimensionality: 1
 
-  normal_file:
+  input_normal_bam:
     argument_type: file.bam
     dimensionality: 1
 
-  gender:
+  sex:
     argument_type: parameter.string
 
   nthreads:
@@ -54,15 +54,15 @@ workflows:
     ####################################
     input:
 
-      tumor_file:
+      input_tumor_bam:
         argument_type: file.bam
         input_dimension: 1
 
-      normal_file:
+      input_normal_bam:
         argument_type: file.bam
         input_dimension: 1
 
-      gender:
+      sex:
         argument_type: parameter.string
 
       nthreads:
