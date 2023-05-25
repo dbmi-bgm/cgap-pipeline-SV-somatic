@@ -17,10 +17,10 @@ software:
 #############################################################
 input:
 
-  tumor_file:
+  input_tumor_bam:
     argument_type: file.bam
 
-  normal_file:
+  input_normal_bam:
     argument_type: file.bam
 
   gender:

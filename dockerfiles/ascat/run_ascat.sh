@@ -4,13 +4,13 @@ WORKDIR="/usr/local/bin"
 
 while [ "$1" != "" ]; do
     case $1 in
-    --tumor_file)
+    --input_tumor_bam)
         shift
-        tumor_file=$1
+        input_tumor_bam=$1
         ;;
-    --normal_file)
+    --input_normal_bam)
         shift
-        normal_file=$1
+        input_normal_bam=$1
         ;;
     --gender)
         shift
@@ -30,6 +30,17 @@ done
 
 tar -xzf $reference_data
 
-Rscript $WORKDIR/ascat.R --tumor_file $tumor_file --normal_file $normal_file --gender $gender --nthreads $nthreads || exit 1
+if [ $gender == "M" ]
+then
+  gender="XY"
+fi
+
+if [ $gender == "F"]
+then
+  gender="XX"
+fi
+
+
+Rscript $WORKDIR/ascat.R --input_tumor_bam $input_tumor_bam --input_normal_bam $input_normal_bam --gender $gender --nthreads $nthreads || exit 1
 gzip cnv_ascat.tsv || exit 1
 gzip BAF_LogR_tumor_germline.tsv || exit 1
