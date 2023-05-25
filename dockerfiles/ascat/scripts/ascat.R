@@ -30,10 +30,10 @@ option_list <- list(
   ),
   
   make_option(
-    c("--sex"),
+    c("--gender"),
     type = "character",
     action = "store",
-    help = "sex"
+    help = "gender"
   ), 
   make_option(
     c("--nthreads"),
@@ -48,12 +48,12 @@ option_list <- list(
 REQUIRED_PARAMS <-
   c("input_tumor_bam",
     "input_normal_bam",
-    "sex")
+    "gender")
 
 opt = parse_args(OptionParser(option_list = option_list))
 
 if (is.null(opt$input_tumor_bam) |
-    is.null(opt$input_normal_bam) | is.null(opt$sex)) {
+    is.null(opt$input_normal_bam) | is.null(opt$gender)) {
   stop(paste(
     c("Specify all required parameters: ", REQUIRED_PARAMS),
     collapse = " "
@@ -61,8 +61,8 @@ if (is.null(opt$input_tumor_bam) |
   
 }
 
-if (!(opt$sex %in%  c("XX", "XY"))) {
-  stop("Provide correct sex: XY or XX")
+if (!(opt$gender %in%  c("XX", "XY"))) {
+  stop("Provide correct gender: XY or XX")
 }
 
 library(ASCAT)
@@ -77,7 +77,7 @@ ascat.prepareHTS(
   allelecounter_exe = "/miniconda3/bin/alleleCounter",
   alleles.prefix = "G1000_alleles_hg38_chr",
   loci.prefix = "G1000_loci_hg38_chr",
-  sex = opt$sex,
+  gender = opt$gender,
   genomeVersion = GENOME_VERSION,
   nthreads = opt$threads,
   tumourLogR_file = tumorLogR_file_name,

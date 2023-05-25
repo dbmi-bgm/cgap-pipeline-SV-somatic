@@ -63,8 +63,9 @@ workflows:
         argument_type: file.bam
         input_dimension: 1
 
-      sex:
+      gender:
         argument_type: parameter.string
+        source_argument_name: sex
 
       nthreads:
         argument_type: parameter.integer

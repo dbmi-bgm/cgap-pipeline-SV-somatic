@@ -23,7 +23,7 @@ input:
   input_normal_bam:
     argument_type: file.bam
 
-  sex:
+  gender:
     argument_type: parameter.string
 
   nthreads:

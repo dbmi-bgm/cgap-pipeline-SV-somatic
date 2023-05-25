@@ -30,11 +30,11 @@ inputs:
       - .bai
     doc: normal sample BAM file
 
-  - id: sex
+  - id: gender
     type: string
     inputBinding:
-        prefix: "--sex"
-    doc: sex
+        prefix: "--gender"
+    doc: Gender. Possible values: XX, F, XY, M
 
   - id: nthreads
     type: int
