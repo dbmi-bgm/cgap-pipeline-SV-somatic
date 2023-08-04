@@ -72,7 +72,7 @@ gene_table <- read.table(gzfile(opt$cgap_genes),
                          sep = '\t',
                          header = TRUE)
 
-#calculating mid point and storing it under pos as it will be the position of drivers displayed on Chromoscope 
+#calculating mid point and storing it under pos as it will be the position of drivers displayed on Chromoscope
 gene_table["pos"] = gene_table["start"] + round(((gene_table["end"] - gene_table["start"])/2))
 
 
@@ -174,6 +174,7 @@ final$top_category <- "CNV"
 final <- final %>% select(gene,
                  chr,
                  pos,
-                 category) %>% rename(chrom = chr) #rename it for Chromoscope
+                 category,
+                 top_category) %>% rename(chrom = chr) #rename it for Chromoscope
 
 write.table(final, file=opt$output, sep='\t',row.names = FALSE, quote=FALSE)
