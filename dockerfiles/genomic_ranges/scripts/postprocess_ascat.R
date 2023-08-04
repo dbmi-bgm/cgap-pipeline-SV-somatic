@@ -160,8 +160,7 @@ final <-
   final %>% select(
     gene,
     chr,
-    start,
-    end,
+    pos,
     max_subjectHits,
     min_subjectHits,
     amplification,

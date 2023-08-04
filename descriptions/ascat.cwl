@@ -33,8 +33,8 @@ inputs:
   - id: gender
     type: string
     inputBinding:
-        prefix: "--gender"
-    doc: Gender. Possible values: XX, F, XY, M
+      prefix: "--gender"
+    doc: Gender. Possible values are XX, F, XY, M
 
   - id: nthreads
     type: int
