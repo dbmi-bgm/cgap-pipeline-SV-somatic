@@ -72,6 +72,10 @@ gene_table <- read.table(gzfile(opt$cgap_genes),
                          sep = '\t',
                          header = TRUE)
 
+#calculating mid point and storing it under pos as it will be the position of drivers displayed on Chromoscope
+gene_table["pos"] = gene_table["start"] + round(((gene_table["end"] - gene_table["start"])/2))
+
+
 # create genes genomic ranges obj
 genes.gr <- GRanges(
   seqnames = Rle(paste0('chr', gene_table$chr)),
@@ -150,28 +154,29 @@ final$deletion <-
          TRUE,
          FALSE)
 
-
+final$top_category <- "CNV"
 #select only relevant fields
 final <-
   final %>% select(
     gene,
     chr,
-    start,
-    end,
+    pos,
     max_subjectHits,
     min_subjectHits,
     amplification,
     partial_amplification,
     deletion,
+    top_category
   ) %>% filter(amplification==TRUE | partial_amplification==TRUE | deletion==TRUE)
 
-final$category[final$amplification == TRUE | final$partial_amplification == TRUE ] <- "amplification"
+
+final$category[final$amplification == TRUE | final$partial_amplification == TRUE] <- "amplification"
 final$category[final$deletion==TRUE] <- "deletion"
 
 final <- final %>% select(gene,
                  chr,
-                 start,
-                 end,
-                 category) %>% rename(chrom = chr) #rename it for GosCan
+                 pos,
+                 category,
+                 top_category) %>% rename(chrom = chr) #rename it for Chromoscope
 
 write.table(final, file=opt$output, sep='\t',row.names = FALSE, quote=FALSE)

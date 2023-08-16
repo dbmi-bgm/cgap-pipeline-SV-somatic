@@ -25,6 +25,8 @@ WORKDIR /usr/local/bin
 RUN conda install -c bioconda -y r-base==4.1.0 ascat==3.0.0 cancerit-allelecount==4.3.0  && \
     conda clean -a -y -f
 
+RUN conda install -c conda-forge pkg-config
+
 ## other R packages
 RUN R -e "install.packages('optparse', repos='http://cran.rstudio.com/')"
 RUN R -e "install.packages('tidyverse', repos='http://cran.rstudio.com/')"
