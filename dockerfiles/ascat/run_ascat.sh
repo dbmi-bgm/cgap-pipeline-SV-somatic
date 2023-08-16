@@ -35,7 +35,7 @@ then
   gender="XY"
 fi
 
-if [ $gender == "F"]
+if [ $gender == "F" ]
 then
   gender="XX"
 fi

@@ -154,7 +154,7 @@ final$deletion <-
          TRUE,
          FALSE)
 
-
+final$top_category <- "CNV"
 #select only relevant fields
 final <-
   final %>% select(
@@ -166,11 +166,13 @@ final <-
     amplification,
     partial_amplification,
     deletion,
+    top_category
   ) %>% filter(amplification==TRUE | partial_amplification==TRUE | deletion==TRUE)
+
 
 final$category[final$amplification == TRUE | final$partial_amplification == TRUE] <- "amplification"
 final$category[final$deletion==TRUE] <- "deletion"
-final$top_category <- "CNV"
+
 final <- final %>% select(gene,
                  chr,
                  pos,
